@@ -1,33 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Smooth scroll for navigation links
-    document.querySelectorAll('nav ul li a').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    document.querySelectorAll('nav a.nav-link').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
-
+            
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-
-            // Get the fixed header height dynamically
-            const headerOffset = document.querySelector('header').offsetHeight;
-
+            
             if (targetElement) {
-                // Adjust scroll position to account for fixed header
-                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = elementPosition - headerOffset; // Subtract header height
-
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
-            } else {
-                console.warn(`Target element with ID ${targetId} not found.`);
             }
         });
     });
 
-    // Optional: Scroll-to-top button (initially hidden)
+    // Scroll-to-top button
     const scrollTopButton = document.createElement('button');
-    scrollTopButton.innerText = '⬆️';
+    scrollTopButton.innerHTML = '<i class="bi bi-arrow-up"></i>';
     scrollTopButton.id = 'scrollTopBtn';
     document.body.appendChild(scrollTopButton);
 
@@ -46,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor: pointer;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         z-index: 999;
-        transition: background-color 0.3s ease, opacity 0.3s ease;
+        transition: all 0.3s ease;
     `;
 
     scrollTopButton.addEventListener('click', () => {
@@ -58,7 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
-            scrollTopButton.style.display = 'block';
+            scrollTopButton.style.display = 'flex';
+            scrollTopButton.style.alignItems = 'center';
+            scrollTopButton.style.justifyContent = 'center';
             scrollTopButton.style.opacity = '1';
         } else {
             scrollTopButton.style.opacity = '0';
@@ -66,19 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Optional: Fade-in animation for sections
+    // Fade-in animation for sections
     const sections = document.querySelectorAll('.section');
-
-    const fadeInObserver = new IntersectionObserver((entries, observer) => {
+    const fadeInObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in');
-                observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1
-    });
+    }, { threshold: 0.1 });
 
     sections.forEach(section => {
         section.style.opacity = '0';
@@ -87,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fadeInObserver.observe(section);
     });
 
-    // --- Contact Form Validation ---
+    // Contact Form Validation
     const contactForm = document.getElementById('contactForm');
     const successMessage = document.getElementById('successMessage');
 
@@ -182,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showSuccess() {
         if (successMessage) {
-            successMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+            successMessage.textContent = 'Thank you for your message! I will get back to you soon.';
             successMessage.style.display = 'block';
 
             setTimeout(() => {
@@ -191,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Footer Current Year ---
+    // Footer Current Year
     const currentYearSpan = document.getElementById('current-year');
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
