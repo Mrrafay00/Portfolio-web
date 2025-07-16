@@ -1,13 +1,10 @@
-/* Basic Reset & Body Styles */
 :root {
-    --primary-color: #3498db; /* A nice blue for general theme */
-    --secondary-color: #2c3e50; /* Dark grey/blue for general theme */
-    --accent-color: #e74c3c; /* Red for general buttons/accents */
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
     --text-color: #333;
     --light-bg: #f4f4f4;
     --dark-bg: #222;
-
-    /* New Modern RGBA Color Scheme for Contact Form */
     --contact-primary: rgba(74, 108, 247, 0.9);
     --contact-primary-light: rgba(74, 108, 247, 0.2);
     --contact-error: rgba(255, 71, 87, 0.9);
@@ -24,9 +21,8 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
-    /* Removed padding-top here */
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-bg);
@@ -41,7 +37,6 @@ body {
     padding: 0 20px;
 }
 
-/* Header Adjustments for Bootstrap Navbar */
 .navbar-brand h1 {
     font-size: 2.2rem;
     margin-bottom: 0;
@@ -52,16 +47,14 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Hero Section Styles */
+/* Hero Section */
 .hero-section {
     background-color: var(--light-bg);
-    padding: 100px 0; /* Still needs good padding for content */
-    text-align: center;
+    padding: 100px 0;
     min-height: 80vh;
     display: flex;
     align-items: center;
-    /* Add top padding to account for fixed header, as #top div is removed */
-    padding-top: calc(100px + 80px); /* 100px original padding + 80px for navbar height */
+    padding-top: calc(100px + 80px);
 }
 
 .hero-content {
@@ -90,8 +83,6 @@ body {
 .hero-section p.lead {
     font-size: 1.1rem;
     max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .hero-img {
@@ -102,25 +93,7 @@ body {
     margin-top: 30px;
 }
 
-/* Adjustments for larger screens for Hero Section */
-@media (min-width: 992px) {
-    .hero-section {
-        text-align: left;
-    }
-
-    .hero-section p.lead {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .hero-img {
-        margin-top: 0;
-        max-width: 85%;
-    }
-}
-
-
-/* Section Common Styles (apply after hero) */
+/* Sections */
 .section {
     padding: 60px 0;
     border-bottom: 1px solid #ddd;
@@ -137,10 +110,15 @@ body {
     color: var(--secondary-color);
 }
 
+.bg-light {
+    background-color: var(--light-bg) !important;
+}
 
-/* Projects Section */
+/* Projects */
 .project-card-custom {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .project-card-custom:hover {
@@ -152,30 +130,60 @@ body {
     color: var(--primary-color);
 }
 
-.card-text {
-    color: #555;
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
 }
 
-/* Contact Section Styles */
-#contact {
-    color: var(--contact-text);
+.badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 4px 8px;
+}
+
+/* Skills */
+.skill-item {
+    margin-bottom: 20px;
+}
+
+.progress {
+    height: 8px;
+    border-radius: 4px;
+}
+
+.progress-bar {
+    border-radius: 4px;
+}
+
+/* Contact */
+.contact-cta {
+    background-color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+    transition: all 0.3s;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
 }
 
 .form-container {
     width: 100%;
-    max-width: 600px;
     background: white;
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-}
-
-#contact h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--contact-primary);
-    font-weight: 600;
 }
 
 .form-group {
@@ -186,7 +194,6 @@ label {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
 }
 
 input, textarea {
@@ -194,7 +201,6 @@ input, textarea {
     padding: 12px 15px;
     border: 1px solid var(--contact-border);
     border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     transition: all 0.3s;
 }
@@ -218,15 +224,9 @@ textarea {
     height: 18px;
 }
 
-/* Validation States */
 .form-group.error input,
 .form-group.error textarea {
     border-color: var(--contact-error);
-}
-
-.form-group.error input:focus,
-.form-group.error textarea:focus {
-    box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.2);
 }
 
 .form-group.success input,
@@ -234,7 +234,6 @@ textarea {
     border-color: var(--contact-success);
 }
 
-/* Submit Button */
 .submit-btn {
     width: 100%;
     padding: 14px;
@@ -246,14 +245,12 @@ textarea {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s;
-    font-family: 'Poppins', sans-serif;
 }
 
 .submit-btn:hover {
     background-color: rgba(74, 108, 247, 1);
 }
 
-/* Success Message */
 .success-message {
     margin-top: 25px;
     padding: 15px;
@@ -264,40 +261,57 @@ textarea {
     display: none;
 }
 
-/* Responsive Design for Contact Form */
-@media (max-width: 768px) {
-    .form-container {
-        padding: 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    .form-container {
-        padding: 25px 20px;
-    }
-
-    #contact h2 {
-        font-size: 1.8rem;
-    }
-}
-
-/* Fade-in animation for sections */
-.section.fade-in {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-/* Footer Styles */
+/* Footer */
 footer {
     background-color: var(--secondary-color);
     color: rgba(255, 255, 255, 0.7);
     padding: 20px 0;
     text-align: center;
     margin-top: auto;
-    width: 100%;
 }
 
-footer p {
-    margin: 0;
-    font-size: 0.9rem;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: calc(60px + 80px);
+        text-align: center;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-section p.lead {
+        font-size: 1rem;
+    }
+    
+    .section {
+        padding: 40px 0;
+    }
+    
+    .form-container {
+        padding: 30px;
+    }
+    
+    .contact-cta {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .form-container {
+        padding: 20px;
+    }
 }
